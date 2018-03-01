@@ -1,0 +1,132 @@
+// SASS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home
+//   width: $icon-home-width
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites
+$close-name: 'close'
+$close-x: 0px
+$close-y: 0px
+$close-offset-x: 0px
+$close-offset-y: 0px
+$close-width: 37px
+$close-height: 37px
+$close-total-width: 73px
+$close-total-height: 58px
+$close-image: 'sprite.png'
+$close: (0px, 0px, 0px, 0px, 37px, 37px, 73px, 58px, 'sprite.png', 'close', )
+$phone-black-name: 'phone-black'
+$phone-black-x: 57px
+$phone-black-y: 0px
+$phone-black-offset-x: -57px
+$phone-black-offset-y: 0px
+$phone-black-width: 16px
+$phone-black-height: 21px
+$phone-black-total-width: 73px
+$phone-black-total-height: 58px
+$phone-black-image: 'sprite.png'
+$phone-black: (57px, 0px, -57px, 0px, 16px, 21px, 73px, 58px, 'sprite.png', 'phone-black', )
+$phone-gray-name: 'phone-gray'
+$phone-gray-x: 0px
+$phone-gray-y: 37px
+$phone-gray-offset-x: 0px
+$phone-gray-offset-y: -37px
+$phone-gray-width: 16px
+$phone-gray-height: 21px
+$phone-gray-total-width: 73px
+$phone-gray-total-height: 58px
+$phone-gray-image: 'sprite.png'
+$phone-gray: (0px, 37px, 0px, -37px, 16px, 21px, 73px, 58px, 'sprite.png', 'phone-gray', )
+$phone-white-name: 'phone-white'
+$phone-white-x: 16px
+$phone-white-y: 37px
+$phone-white-offset-x: -16px
+$phone-white-offset-y: -37px
+$phone-white-width: 16px
+$phone-white-height: 21px
+$phone-white-total-width: 73px
+$phone-white-total-height: 58px
+$phone-white-image: 'sprite.png'
+$phone-white: (16px, 37px, -16px, -37px, 16px, 21px, 73px, 58px, 'sprite.png', 'phone-white', )
+$ruble-big-name: 'ruble-big'
+$ruble-big-x: 37px
+$ruble-big-y: 0px
+$ruble-big-offset-x: -37px
+$ruble-big-offset-y: 0px
+$ruble-big-width: 20px
+$ruble-big-height: 23px
+$ruble-big-total-width: 73px
+$ruble-big-total-height: 58px
+$ruble-big-image: 'sprite.png'
+$ruble-big: (37px, 0px, -37px, 0px, 20px, 23px, 73px, 58px, 'sprite.png', 'ruble-big', )
+$ruble-small-name: 'ruble-small'
+$ruble-small-x: 32px
+$ruble-small-y: 37px
+$ruble-small-offset-x: -32px
+$ruble-small-offset-y: -37px
+$ruble-small-width: 15px
+$ruble-small-height: 18px
+$ruble-small-total-width: 73px
+$ruble-small-total-height: 58px
+$ruble-small-image: 'sprite.png'
+$ruble-small: (32px, 37px, -32px, -37px, 15px, 18px, 73px, 58px, 'sprite.png', 'ruble-small', )
+$spritesheet-width: 73px
+$spritesheet-height: 58px
+$spritesheet-image: 'sprite.png'
+$spritesheet-sprites: ($close, $phone-black, $phone-gray, $phone-white, $ruble-big, $ruble-small, )
+$spritesheet: (73px, 58px, 'sprite.png', $spritesheet-sprites, )
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home
+//   @include sprite-width($icon-home)
+//
+// .icon-email
+//   @include sprite($icon-email)
+//
+// Example usage in HTML:
+//   `display: block` sprite:
+//   <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//   // CSS
+//   .icon {
+//     display: inline-block;
+//   }
+//
+//   // HTML
+//   <i class="icon icon-home"></i>
+@mixin sprite-width($sprite)
+  width: nth($sprite, 5)
+
+@mixin sprite-height($sprite)
+  height: nth($sprite, 6)
+
+@mixin sprite-position($sprite)
+  $sprite-offset-x: nth($sprite, 3)
+  $sprite-offset-y: nth($sprite, 4)
+  background-position: $sprite-offset-x  $sprite-offset-y
+
+@mixin sprite-image($sprite)
+  $sprite-image: nth($sprite, 9)
+  background-image: url(#{$sprite-image})
+
+@mixin sprite($sprite)
+  @include sprite-image($sprite)
+  @include sprite-position($sprite)
+  @include sprite-width($sprite)
+  @include sprite-height($sprite)
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SASS
+//
+// @include sprites($spritesheet-sprites)
+@mixin sprites($sprites)
+  @each $sprite in $sprites
+    $sprite-name: nth($sprite, 10)
+    .#{$sprite-name}
+      @include sprite($sprite)

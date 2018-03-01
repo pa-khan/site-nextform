@@ -1,0 +1,35 @@
+.icon-close {
+  background-image: url(../../img/sprite.png);
+  background-position: 0px 0px;
+  width: 37px;
+  height: 37px; }
+
+.icon-phone-black {
+  background-image: url(../../img/sprite.png);
+  background-position: -57px 0px;
+  width: 16px;
+  height: 21px; }
+
+.icon-phone-gray {
+  background-image: url(../../img/sprite.png);
+  background-position: 0px -37px;
+  width: 16px;
+  height: 21px; }
+
+.icon-phone-white {
+  background-image: url(../../img/sprite.png);
+  background-position: -16px -37px;
+  width: 16px;
+  height: 21px; }
+
+.icon-ruble-big {
+  background-image: url(../../img/sprite.png);
+  background-position: -37px 0px;
+  width: 20px;
+  height: 23px; }
+
+.icon-ruble-small {
+  background-image: url(../../img/sprite.png);
+  background-position: -32px -37px;
+  width: 15px;
+  height: 18px; }
